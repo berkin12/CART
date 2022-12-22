@@ -234,9 +234,18 @@ cv_results['test_roc_auc'].mean()
 ################################################
 # 6. Feature Importance
 ################################################
+#değişkenleri sahip olduğu önem sıralamasına göre sıralıcazke
 
 cart_final.feature_importances_
+#değişkenlerin önem özelliği yukarıdakini yapınca geldi ama format anlayabileceğimiz düzeyde değil
+#o zaman öyle  bişey yapalım ki
+#kıyamadığım serisinden fonksiyon aşağıdaaa!!!!!!
+#önem sırasına göre sıralar, isimlerini verir ve bize görselleştirir bu çıktıı ooo
 
+#burada ön tanımlı argüman num var değişken kadarınca dedik biz ilk 5'de diyebilirdik duruma göre
+#ilk argümanımız da model
+#3. argüman değişkenler, feature'lar, kolonlar
+#save diye bi argüman var false dedik true dersek kaydeder bak aşağıda sonda if save: plt.save bişeyler var
 def plot_importance(model, features, num=len(X), save=False):
     feature_imp = pd.DataFrame({'Value': model.feature_importances_, 'Feature': features.columns})
     plt.figure(figsize=(10, 10))
