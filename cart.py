@@ -143,7 +143,13 @@ cv_results['test_roc_auc'].mean()
 #orada da işin içinden çıkamadık random state değiştikçe sonuçlar değişti
 #aslında belki veri setimiz zengin olsa bu holdout yöntemi yeterli olurdu
 #ama olmadı o yüzden cross validation yapalım dedik madem en sonunda
+#en son artık elde ettiğimiz başarı oranları n doğru başarı oranlarıdır
+#tamam en doğru sonuçları şimdi bulduk ama sonuçlar da biraz düşük kaldı gibi kardeş
+#model başarımızı nasıl arttırırız şimdi?
+#cvp: yeni değişkenler ekleyerek veri ön işleme yaparak ya da hiperparametre optimizasyonu yaparak 
+#ek olarak bu veriseti özelinde dengesiz veri yaklaşımları da tercih edilebilir.
 
+#biz hiperparametere optimizasyonu seçmeke ve devamkee
 ################################################
 # 4. Hyperparameter Optimization with GridSearchCV
 ################################################
