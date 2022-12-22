@@ -111,12 +111,18 @@ roc_auc_score(y_test, y_prob)
 #demek ki model göremediği veride berbar train set'ini ezberledi
 #accuracy 0.71 fena değil ama kötü f1 0.58 çıktı biraz düşük ama kayde değer diyebiliriz
 
-
+#random state'i değiştirip modeli yeniden kurduk baktık ki skorlar hep değişiyor
+#işin içinden çıkamadık e napıcaz
+#çapraz doğrulama selamın aleykum ben geliyorum diyecez 
+#model başarımızı böyle değerlendiricez
 #####################
 # CV ile Başarı Değerlendirme
 #####################
 
 cart_model = DecisionTreeClassifier(random_state=17).fit(X, y)
+#tamam aynı şekil modelimizi fit ettik
+#şimdi cross validate yapıcaz kardeş ama yukarıda zaten sen tüm modeli fit ettin
+#dersen eğer haklısın ama cross validate kardeş bu durumua ayarlıyor gerektiği gibi
 
 cv_results = cross_validate(cart_model,
                             X, y,
