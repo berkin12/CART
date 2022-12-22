@@ -154,16 +154,24 @@ cv_results['test_roc_auc'].mean()
 # 4. Hyperparameter Optimization with GridSearchCV
 ################################################
 
+
+cart_model.get_params()
+
 #mevcut modelin hiperparametrelerini görmek için get_params kardeşi çağırdık
 #biz buradaki çıktılardan en önemli olanları seçelimm
 #mesela min_samples_split var ön tanımlı değeri de 2'ymiş
 #yani iki tane kalana kadar bölme işlemine devam ediyor e bu overfit'e sebep olabilir 
 #bi de max_depth var ön tanımlı değeri none bu da overfit yapıyordur muhtemelen
-cart_model.get_params()
 
+#şimdi denenecek olan parametre setleri için öntanımlı değerlerimizi verdik
 cart_params = {'max_depth': range(1, 11),
                "min_samples_split": range(2, 20)}
 
+#şimdi de gridsearchCV kardeşle bu parametrelere göre bi arama yapılmasını sağlayacağız
+#ne diyordu bu kardeş? bana modeli göster hanhi hiperparametrelerde geziceğimi göster diyordu
+#kaç katlı çapraz doğrulama ile hatalara bakıcağını gösterdik
+#işlmciyi tam performans kullan dedik n_jobs=-1'le
+#verbose true ile rapor ver kardeş dedik
 cart_best_grid = GridSearchCV(cart_model,
                               cart_params,
                               cv=5,
