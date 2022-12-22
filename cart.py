@@ -265,13 +265,26 @@ plot_importance(cart_final, X, num=5)
 # 7. Analyzing Model Complexity with Learning Curves (BONUS)
 ################################################
 
+#overfit'e düştüm mü sorusunun cevabı train ve test setinin farklarının ayrışmaya
+#başladığı noktadır dedik kardeş..
+#nasıl yakalarım bunu ayrıştığı noktaya bakarız
+#önüne geçmek için model karmaşıklığının önüne geçeriz
+#model karmaşıklığı metrikleri modellere göre değişir 
+#şimdi validation curve diye metodumuz var 
+#diyor ki bize final modeli ver kardeş, bağımsız değişkeni, bağımlı değişkeni ver
+#bir parametre seç ve buna göre öğrenme eğrilerini ver istiyoruz
+#bu bana numerik çıktılar vericek ben de görselleştiricem
+#hangi parametre max depth
+#hangi aralıkta gir
+#hangi skoru görmek istersin
+#kaç katlı cross validate atalım girdik
 
 train_score, test_score = validation_curve(cart_final, X, y,
                                            param_name="max_depth",
                                            param_range=range(1, 11),
                                            scoring="roc_auc",
                                            cv=10)
-
+#şimdi çıktı geldi de tamam nedir bu?
 mean_train_score = np.mean(train_score, axis=1)
 mean_test_score = np.mean(test_score, axis=1)
 
