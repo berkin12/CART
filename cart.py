@@ -51,24 +51,33 @@ warnings.simplefilter(action='ignore', category=Warning)
 # 3. Modeling using CART
 ################################################
 
-df = pd.read_csv("datasets/diabetes.csv")
+df = pd.read_csv("datasets/diabetes.csv") #veri setini çağırdık
 
-y = df["Outcome"]
-X = df.drop(["Outcome"], axis=1)
+y = df["Outcome"] #bağımlı değişkeni seçtik
+X = df.drop(["Outcome"], axis=1) #bağımsız değişkeni seçtik
 
 cart_model = DecisionTreeClassifier(random_state=1).fit(X, y)
+#daha önceden import etiğimiz modelimizi çağırdık 
+#değişkenlerimizi fit ettik
+#random state hocayla aynı sonuçları alalım diye
 
 # Confusion matrix için y_pred:
 y_pred = cart_model.predict(X)
+#tahmin edilen değerlerimiz bunlar sonra bunları değerlendiricez
 
 # AUC için y_prob:
 y_prob = cart_model.predict_proba(X)[:, 1]
+#roc eğrisi için 1. sınıfa ait olma olasılıkları lazım bize
+#auc hesaplıcaaz
 
 # Confusion matrix
 print(classification_report(y, y_pred))
+#başarı değerimize bakıyoruz burada 1 çıktı mükemmel 1 atlayış
+#precisionlar recall f1ler hep 1 maşallah
 
 # AUC
 roc_auc_score(y, y_prob)
+#auc skor da 1 çıktı bu terste bir işlik yok mu
 
 #####################
 # Holdout Yöntemi ile Başarı Değerlendirme
