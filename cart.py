@@ -202,12 +202,22 @@ cart_best_grid.predict(random)
 ################################################
 # 5. Final Model
 ################################################
+#aha aşağıda modelimizi kurduk
 
 cart_final = DecisionTreeClassifier(**cart_best_grid.best_params_, random_state=17).fit(X, y)
+#şimdi bi parametrelerimize bakalım
 cart_final.get_params()
+#heh tamam gelmiş istediğimiz ön tanımlı değerlerimiz
+
+#final model oluşturmanın bir yolu budur
+#bir de bu var;
+#en iyi parametreleri modele atamak için;
+#bunu biye gösterdik bu parametreleri daha sonra metodsal fonksiyonel olarak atamamız gerekebilir
+#napıyoruz böylece aşağıda: var olan bir modeli set_params'ı kullanarak final model yapabiliriz
 
 cart_final = cart_model.set_params(**cart_best_grid.best_params_).fit(X, y)
 
+#şimdi final modelimizin hata skorlarına  cross validate'lebakalım
 cv_results = cross_validate(cart_final,
                             X, y,
                             cv=5,
@@ -218,6 +228,7 @@ cv_results['test_accuracy'].mean()
 cv_results['test_f1'].mean()
 
 cv_results['test_roc_auc'].mean()
+#evet yukarıdakilerin çıktılarından görecez ki ilerleme kaydettik
 
 
 ################################################
