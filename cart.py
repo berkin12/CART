@@ -149,11 +149,16 @@ cv_results['test_roc_auc'].mean()
 #cvp: yeni değişkenler ekleyerek veri ön işleme yaparak ya da hiperparametre optimizasyonu yaparak 
 #ek olarak bu veriseti özelinde dengesiz veri yaklaşımları da tercih edilebilir.
 
-#biz hiperparametere optimizasyonu seçmeke ve devamkee
+#biz bu seçeneklerden hiperparametere optimizasyonu seçmeke ve devamkee
 ################################################
 # 4. Hyperparameter Optimization with GridSearchCV
 ################################################
 
+#mevcut modelin hiperparametrelerini görmek için get_params kardeşi çağırdık
+#biz buradaki çıktılardan en önemli olanları seçelimm
+#mesela min_samples_split var ön tanımlı değeri de 2'ymiş
+#yani iki tane kalana kadar bölme işlemine devam ediyor e bu overfit'e sebep olabilir 
+#bi de max_depth var ön tanımlı değeri none bu da overfit yapıyordur muhtemelen
 cart_model.get_params()
 
 cart_params = {'max_depth': range(1, 11),
