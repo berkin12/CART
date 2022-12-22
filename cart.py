@@ -136,6 +136,13 @@ cv_results['test_f1'].mean()
 cv_results['test_roc_auc'].mean()
 # 0.6719440950384347
 
+#ŞİMDİ BİZ BURAYA KADAR NE YAPTIK KARDEŞ?
+#E anlatayım; biz modelimizi kurduk bi baktık skorlarımız 1 geliyor
+#dedik ki bu terste bir işlik var böyle olmaz ki ya 
+#en iyisi  holdout yöntemiyle ben bi train test yapıyım dedik
+#orada da işin içinden çıkamadık random state değiştikçe sonuçlar değişti
+#aslında belki veri setimiz zengin olsa bu holdout yöntemi yeterli olurdu
+#ama olmadı o yüzden cross validation yapalım dedik madem en sonunda
 
 ################################################
 # 4. Hyperparameter Optimization with GridSearchCV
