@@ -177,10 +177,22 @@ cart_best_grid = GridSearchCV(cart_model,
                               cv=5,
                               n_jobs=-1,
                               verbose=1).fit(X, y)
+#bu hiperparametre optm. tüm veriyle ya da train test ile de yapılabilir
+#öneri tüm veri setiyle yapılmasından yana
+#biz de veri seti boyutu az diye hepsini kullandık 
+#sen istersen bunu train ile yapar sonra test ile test edebilirsin o da kayda değer bir yoldur
 
 cart_best_grid.best_params_
+#max depth: 5, min samples split:4 en iyi değerler bunlar çıktı
 
+#o zaman şimdi en iy değerlere göre en iyi skorlarımıza bakalım
 cart_best_grid.best_score_
+#0.75 çıktı best score'da
+#bu 0,75 ne? scoring ön tanımlı argüman var ön tanımlı değeri accuracy'dir
+#bunu değiştirmeye gerek yok ama daha sonra gerekirse değiştirirsin
+#f1 skor yaparsan bunu max depth ve min samples split değiştii
+#dökümantasyon oku bol bol metodların detayına girr iyidir kardeşşş
+#biz accuracy'de kaldık devam edicez
 
 random = X.sample(1, random_state=45)
 
