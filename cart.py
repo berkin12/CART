@@ -79,12 +79,18 @@ print(classification_report(y, y_pred))
 roc_auc_score(y, y_prob)
 #auc skor da 1 çıktı bu terste bir işlik yok mu
 
+#overfit'e mi düştük yoksa
+#başarımı nasıl daha doğru değerlendirebilirim diye holdout yöntemimiz var
+
 #####################
 # Holdout Yöntemi ile Başarı Değerlendirme
 #####################
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.30, random_state=45)
+# test ve train setlerimizi ikiye ayırdık train_test_split ile
+#0.7'si train 0.3'ü test yaptık
 
+#modelimizi kurduk yine 
 cart_model = DecisionTreeClassifier(random_state=17).fit(X_train, y_train)
 
 # Train Hatası
@@ -92,12 +98,19 @@ y_pred = cart_model.predict(X_train)
 y_prob = cart_model.predict_proba(X_train)[:, 1]
 print(classification_report(y_train, y_pred))
 roc_auc_score(y_train, y_prob)
+#train için bi baktık skorlarımız yine 1 geldi başarımız
 
 # Test Hatası
 y_pred = cart_model.predict(X_test)
 y_prob = cart_model.predict_proba(X_test)[:, 1]
 print(classification_report(y_test, y_pred))
 roc_auc_score(y_test, y_prob)
+#şimdi hiç görmediği test setinde gördük ki
+#eğitildiği veride yüksek performans verdi ama
+#görmediği veride precisionlar recall'lar f1'ler accuracy'ler hep düştü
+#demek ki model göremediği veride berbar train set'ini ezberledi
+#accuracy 0.71 fena değil ama kötü f1 0.58 çıktı biraz düşük ama kayde değer diyebiliriz
+
 
 #####################
 # CV ile Başarı Değerlendirme
