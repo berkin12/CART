@@ -268,8 +268,9 @@ plot_importance(cart_final, X, num=5)
 #overfit'e düştüm mü sorusunun cevabı train ve test setinin farklarının ayrışmaya
 #başladığı noktadır dedik kardeş..
 #nasıl yakalarım bunu ayrıştığı noktaya bakarız
-#önüne geçmek için model karmaşıklığının önüne geçeriz
+#önüne geçmek için model karmaşıklığı azaltırız böylece önüne geçeriz
 #model karmaşıklığı metrikleri modellere göre değişir 
+#yani başka modelde başka hiperparametreler model karmaşıklığı metrikleridir
 #şimdi validation curve diye metodumuz var 
 #diyor ki bize final modeli ver kardeş, bağımsız değişkeni, bağımlı değişkeni ver
 #bir parametre seç ve buna göre öğrenme eğrilerini ver istiyoruz
@@ -285,9 +286,15 @@ train_score, test_score = validation_curve(cart_final, X, y,
                                            scoring="roc_auc",
                                            cv=10)
 #şimdi çıktı geldi de tamam nedir bu?
+#şimdi bize çıktıdan arraylar içerisinde bazı sayılar geldi ne bunlar
+#bu arraylar 9'uyla train 1'iyle testin cv=10'da sonuçları
+#bunları nasıl kullanıcaz bu arrayların ortalamasını alarak
+#model karmaşıklığına ne dedik train ve test hataları görselleştirilir
+#veee ayrım noktası üzerinden karar vermeye çalışırız
 mean_train_score = np.mean(train_score, axis=1)
 mean_test_score = np.mean(test_score, axis=1)
 
+#bu da bize train test görselini verecek fonksiyon aşaıda
 
 plt.plot(range(1, 11), mean_train_score,
          label="Training Score", color='b')
@@ -301,10 +308,18 @@ plt.ylabel("AUC")
 plt.tight_layout()
 plt.legend(loc='best')
 plt.show()
+#çıktı görselinden anlıyoruz ki max derinlik 2 olduğunda başarımız artmaya devam etmiş
+#3 olduğunda da artmış ama 4'te train test'in başarısı hala artmaya devam ediyor
+#1'e kadar çıkmış skor ama test skoru düşmüş orada
+#max derinliği biz zaten seçtik 5 (emin değilim) ama grafikte 3 gibi çıkıyor
+#olay ne burada; biz model kurarken çok değişkenli olarak değerlendirip seçtik
+#max derinliği tek başına optimum değeri seçmiyoruz
+#biz bu görselle bi çıkarım yapıyoruz bakıyoruz nasılmış doğru şeyler yapmış mıyız diye
 
 
 
-
+#kıyamadığım serisinden bir fonksiyon 
+#dinamik bir fonksiyonkee
 def val_curve_params(model, X, y, param_name, param_range, scoring="roc_auc", cv=10):
     train_score, test_score = validation_curve(
         model, X=X, y=y, param_name=param_name, param_range=param_range, scoring=scoring, cv=cv)
