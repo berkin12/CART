@@ -349,21 +349,25 @@ for i in range(len(cart_val_params)):
     val_curve_params(cart_model, X, y, cart_val_params[i][0], cart_val_params[i][1])
 
 
-
+#BONUS BİLGİ
 ################################################
 # 8. Visualizing the Decision Tree
 ################################################
 
-# conda install graphviz
+# conda install graphviz 
 # import graphviz
+#BU YUKARIDAKILERI KUTUPHANE CALISMAZSA DIYE
 
 def tree_graph(model, col_names, file_name):
     tree_str = export_graphviz(model, feature_names=col_names, filled=True, out_file=None)
     graph = pydotplus.graph_from_dot_data(tree_str)
     graph.write_png(file_name)
-
+#fonksiyon yukarıda 
 
 tree_graph(model=cart_final, col_names=X.columns, file_name="cart_final.png")
+#yukarıda çalıştırdık
+#çalışma dizinine git yoksa diskten yeniden yükle de çift tıkla ve aç
+#grafik de bayağı büyük gelicek he
 
 cart_final.get_params()
 
@@ -374,11 +378,14 @@ cart_final.get_params()
 
 tree_rules = export_text(cart_final, feature_names=list(X.columns))
 print(tree_rules)
+#bu yaptığımız karar kurallarını konsolda gözlemleyebileceğimiz bir tarzda bize sunmuş oldu
+#dallanmalardan sonra tüm değişkenler tekrar göz önünde bulunduruluyor bu arada
 
 
 ################################################
 # 10. Extracting Python Codes of Decision Rules
 ################################################
+#burada bir karar ağacı yöntemini canlı sisteme entegre edeceğizz
 
 # sklearn '0.23.1' versiyonu ile yapılabilir.
 # pip install scikit-learn==0.23.1
@@ -389,7 +396,10 @@ print(skompile(cart_final.predict).to('sqlalchemy/sqlite'))
 
 print(skompile(cart_final.predict).to('excel'))
 
-
+#yukarıda native'de lokalde kullanmak için ihtiyacımız olan kodları çıkarttık
+#veri tabanının içinde çalışmak her zaman daha iyi 
+#canlı ortamda nasıl kullanacaz babuş
+#sql'den çıkmadan işimizi hallediyoruzkee
 ################################################
 # 11. Prediction using Python Codes
 ################################################
